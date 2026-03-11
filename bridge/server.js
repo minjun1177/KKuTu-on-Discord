@@ -15,6 +15,7 @@ let flushTimer = null;
 const FLUSH_INTERVAL_MS = 1200;
 
 const KKT_URLS = ["kkutu.kr", "kkutu.co.kr", "kkutu.io", "bfkkutu.kr", "mahan.kr", "antu.kro.kr", "legendkkutu.kr", "kkutu-n.xyz", "delzb.app"];
+const KKT_TITLE_KEYWORDS = ["KKuTu", "kkutu", "끄투"];
 
 function toSafeText(value, fallback) {
     if (!value || typeof value !== "string") {
@@ -23,13 +24,17 @@ function toSafeText(value, fallback) {
     return value.slice(0, 120);
 }
 
-function isKktUrl(url) {
+function isKKTurl(url) {
     try {
         const { hostname } = new URL(url);
         return KKT_URLS.some((domain) => hostname === domain || hostname.endsWith(`.${domain}`));
     } catch {
         return KKT_URLS.some((domain) => url.includes(domain));
     }
+}
+
+function isKKTtitle(title) {
+    return KKT_TITLE_KEYWORDS.some((keyword) => title.includes(keyword));
 }
 
 async function ensureRpcConnected(clientId) {
@@ -83,7 +88,7 @@ async function flushPresence() {
             return;
         }
 
-        if (!isKktUrl(next.url)) {
+        if (!isKKTurl(next.url) && !isKKTtitle(next.title)) {
             await client.setActivity({
                 details: toSafeText("", "Browsing the web"),
                 state: toSafeText("", "Not in KKuTu"),
@@ -93,8 +98,6 @@ async function flushPresence() {
                 instance: false
             }); 
         } else {
-
-
             await client.setActivity({
                 details: toSafeText(next.title, "Browsing the web"),
                 state: toSafeText(next.url, "In KKuTu"),
