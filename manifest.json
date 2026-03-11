@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "KKuTu on Discord",
+  "version": "1.0.0",
+  "description": "현재 탭을 감지해 끄투 사이트에 접속시 Discord Rich Presence를 갱신하는 브라우저 익스텐션입니다.",
+  "permissions": ["tabs", "storage"],
+  "host_permissions": ["http://127.0.0.1:32145/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

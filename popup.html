@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>KKuTu on Discord</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 14px;
+				width: 300px;
+				font-family: "Segoe UI", sans-serif;
+				background: #f6f7fb;
+				color: #111827;
+			}
+
+			h1 {
+				margin: 0 0 10px;
+				font-size: 16px;
+			}
+
+			.row {
+				margin-bottom: 10px;
+			}
+
+			label {
+				display: block;
+				font-size: 12px;
+				margin-bottom: 5px;
+				color: #374151;
+			}
+
+			input[type="text"] {
+				width: 100%;
+				box-sizing: border-box;
+				border: 1px solid #d1d5db;
+				border-radius: 8px;
+				padding: 8px;
+				font-size: 12px;
+			}
+
+			.check {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				font-size: 13px;
+			}
+
+			.check label {
+				margin: 0;
+				font-size: 13px;
+				color: #111827;
+			}
+
+			button {
+				width: 100%;
+				border: none;
+				border-radius: 8px;
+				padding: 9px;
+				font-size: 13px;
+				cursor: pointer;
+				background: #2563eb;
+				color: white;
+			}
+
+			#status {
+				margin-top: 8px;
+				min-height: 18px;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>KKuTu on Discord</h1>
+
+		<div class="row check">
+			<input id="enabled" type="checkbox" />
+			<label for="enabled">활동 전송 활성화</label>
+		</div>
+
+		<div class="row">
+			<label for="clientId">Discord Client ID</label>
+			<input id="clientId" type="text" placeholder="예: 123456789012345678" />
+		</div>
+
+		<div class="row check">
+			<input id="sendFullUrl" type="checkbox" />
+			<label for="sendFullUrl">도메인 대신 경로 포함 URL 전송</label>
+		</div>
+
+		<button id="saveButton" type="button">저장</button>
+		<div id="status"></div>
+
+		<script src="popup.js"></script>
+	</body>
+</html>
